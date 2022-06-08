@@ -6,7 +6,7 @@ set :repo_url, "git@github.com:nguyensiviet1999/learn_deploy.git"
 
 set :puma_conf, "/var/www/trackerr/shared/config/puma.rb"
 
-set :deploy_to, '/home/ubuntu/trackerr'
+set :deploy_to, '/var/www/trackerr'
 
 set :use_sudo, true
 

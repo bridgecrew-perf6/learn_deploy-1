@@ -12,7 +12,7 @@ server '13.126.203.89', user: 'ubuntu', roles: %w{web app db}
 set :ssh_options, { 
   forward_agent: true, 
   auth_methods: %w[publickey],
-  keys: %w[~/.ssh/test_deploy.pem]
+  keys: %w[/home/viet/.ssh/test_deploy.pem]
 }
 
 # role-based syntax
