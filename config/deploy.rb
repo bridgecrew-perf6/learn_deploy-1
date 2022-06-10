@@ -1,23 +1,22 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.17.0"
 
+server '13.126.203.89', roles: [:web, :app, :db], primary: true
 set :application, "trackerr"
 set :repo_url, "git@github.com:nguyensiviet1999/learn_deploy.git"
 
-set :puma_conf, "/var/www/trackerr/shared/config/puma.rb"
 
-set :deploy_to, '/var/www/trackerr'
+set :user, 'ubuntu'
 
-set :use_sudo, true
-
+set :pty,             true
+set :use_sudo,        false
+set :stage,           :production
+set :deploy_via,      :remote_cache
+set :deploy_to,       "/var/www/#{fetch(:application)}"
 set :branch, 'master'
 
-set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
-
-set :linked_files, %w{config/master.key}
-
-
-
+append :linked_files, "config/master.key", "config/database.yml", "config/application.yml"
+append :linked_dirs, "log", "tmp/pids", "tmp/cache", "public/uploads", "tmp/sockets", "vendor/bundle", "public/system", "public/uploads", "storage"
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
