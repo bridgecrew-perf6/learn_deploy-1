@@ -6,15 +6,12 @@
 # server "example.com", user: "deploy", roles: %w{app db web}, my_property: :my_value
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
-
-role :app, %w{ubuntu@13.126.203.89}
-role :web, %w{ubuntu@13.126.203.89}
-role :db,  %w{ubuntu@13.126.203.89}
+server '13.126.203.89', port: 22, user: 'ubuntu', roles: [:web, :app, :db], primary: true
 
 set :ssh_options, { 
-  forward_agent: true, 
-  auth_methods: %w[publickey],
-  keys: %w[/home/viet/.ssh/test_deploy.pem]
+  forward_agent: true,
+  keys: %w[/home/viet/.ssh/test_deploy.pem],
+  auth_methods: %w(publickey)
 }
 
 # role-based syntax
